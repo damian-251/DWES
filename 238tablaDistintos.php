@@ -17,8 +17,15 @@ for ($i = 0; $i < 6; $i++) {
     for ($j = 0; $j < 9; $j++) {
 
         do {
+            $repetido = false;
             $numero = rand(100, 999);
-        } while (in_array($numero, $arrayAleatoria));
+            foreach ($arrayAleatoria as $fila) {
+                if (in_array($numero, $fila)) {
+                    $repetido = true;
+                }
+            }
+        } while ($repetido);
+
 
 
         $arrayAleatoria[$i][$j] = $numero;
@@ -28,6 +35,8 @@ for ($i = 0; $i < 6; $i++) {
 
 $mayor = $arrayAleatoria[0][0];
 $menor = $arrayAleatoria[0][0];
+$filaMenor = 0;
+$columnaMayor = 0;
 
 for ($i = 0; $i < 6; $i++) {
     for ($j = 0; $j < 9; $j++) {
@@ -63,11 +72,11 @@ for ($i = 0; $i < 6; $i++) {
             text-align: center;
         }
 
-        tr .filaMenor {
+        .filaMenor {
             background-color: greenyellow;
         }
 
-        td .columnaMayor {
+        .columnaMayor {
             background-color: aqua;
         }
     </style>
@@ -75,17 +84,25 @@ for ($i = 0; $i < 6; $i++) {
 
 <body>
     <table>
-        <? for ($i = 0; $i < 6; $i++) { ?>
-            <tr <?php if ($i = $filaMenor) {
-                    print('class = "filaMenor');
+        <?php for ($i = 0; $i < 6; $i++) { ?>
+            <tr <?php if ($i == $filaMenor) {
+                    print('class = "filaMenor"');
                 } ?>>
+
                 <?php for ($j = 0; $j < 9; $j++) { ?>
+
                     <td <?php if ($j == $columnaMayor) {
                             print('class="columnaMayor"');
-                        }  ?>><?= $arrayAleatoria[$i][$j] ?></td>
-                <?php } ?>
+                        } ?>>
+                        <?= $arrayAleatoria[$i][$j] ?>
+                    </td>
+                <?php    } ?>
+
+            <?php } ?>
+
+
             </tr>
-        <?php  } ?>
+
     </table>
 </body>
 
