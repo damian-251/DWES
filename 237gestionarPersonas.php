@@ -7,20 +7,24 @@ for ($i = 0; $i < $cantidad; $i++) {
     $nombre = $_GET["nombre" . $i];
     $altura = $_GET["altura" . $i];
     $email = $_GET["email" . $i];
-    $personas["persona" . $i] = ["nombre" => $nombre, "altura" => $altura, "email" => $email];
+    $personas[] = ["nombre" => $nombre, "altura" => $altura, "email" => $email];
+   // $personas[] = ["nombre" => $nombre, "altura" => $altura, "email" => $email];
+   //así sería como el 236
 }
 
-$mayor = $personas["persona0"];
-$menor = $personas["persona0"];
+$mayor = 0;
+$menor = 0;
+//Guardar la posición
 
+//Empieza en 1 porque la 0 ya lo tenemos arriba y empezamos la comparación a partir de la posición 1
+for ($i = 1; $i < $cantidad; $i++) {
 
-for ($i = 0; $i < $cantidad; $i++) {
-
-    if ($personas["persona" . $i]["altura"] > $mayor["altura"]) {
-        $mayor = $personas["persona" . $i];
-    } else if ($personas["persona" . $i]["altura"] < $menor["altura"]) {
-        $menor = $personas["persona" . $i];
+    if ($personas[$i]["altura"] > $personas[$mayor]["altura"]) {
+        $mayor = $i;
     }
+   else  if ($personas[$i]["altura"] < $personas[$menor]["altura"]) {
+        $menor = $i;
+    } //Guardamos la posición donde está en lugar del elemento entero
 }
 
 ?>
@@ -57,8 +61,8 @@ for ($i = 0; $i < $cantidad; $i++) {
             </tr>
         <?php } ?>
     </table>
-    <p>La persona más alta es: <?= $mayor["nombre"] ?></p>
-    <p>La persona más baja es: <?= $menor["nombre"] ?> </p>
+    <p>La persona más alta es: <?= $personas[$mayor]["nombre"] ?></p>
+    <p>La persona más baja es: <?= $personas[$mayor]["nombre"] ?> </p>
 </body>
 
 </html>

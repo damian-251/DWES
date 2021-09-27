@@ -11,99 +11,81 @@ Muestra a continuación por pantalla el contenido del array de tal forma que:
 
 */
 
-$arrayAleatoria = array();
+const FILAS = 6;
+const COLS = 9;
 
-for ($i = 0; $i < 6; $i++) {
-    for ($j = 0; $j < 9; $j++) {
+$arrayAleatorios = [];
 
-        do {
-            $repetido = false;
-            $numero = rand(100, 999);
-            foreach ($arrayAleatoria as $fila) {
-                if (in_array($numero, $fila)) {
-                    $repetido = true;
-                }
-            }
-        } while ($repetido);
+// Creamos un array unidimensional / sencillo / simple / 1D
+for ($i = 0; $i < FILAS * COLS; $i++) {
+    $num = 0;
+    do {
+        $num = rand(100, 999);
+    } while (in_array($num, $arrayAleatorios));
 
-
-
-        $arrayAleatoria[$i][$j] = $numero;
-    }
+    array_push($arrayAleatorios, $num);
 }
 
-
-$mayor = $arrayAleatoria[0][0];
-$menor = $arrayAleatoria[0][0];
+// Pasamos el array 1d a 2d
+$array2d = [[]]; // creamos un array 2d vacio
+$mayor = 100;
+$menor = 999;
+$colMayor = 0;
 $filaMenor = 0;
-$columnaMayor = 0;
+for ($i = 0; $i < FILAS; $i++) {
+    for ($j = 0; $j < COLS; $j++) {
+        $array2d[$i][$j] = $arrayAleatorios[$i*COLS + $j];
 
-for ($i = 0; $i < 6; $i++) {
-    for ($j = 0; $j < 9; $j++) {
-
-        if ($arrayAleatoria[$i][$j] > $mayor) {
-            $mayor = $arrayAleatoria[$i][$j];
-            $columnaMayor = $j;
-        }
-
-        if ($arrayAleatoria[$i][$j] < $menor) {
-            $menor = $arrayAleatoria[$i][$j];
+        if ($array2d[$i][$j] > $mayor) {
+            $mayor = $array2d[$i][$j];
+            $colMayor = $j;
+        } else if ($array2d[$i][$j] < $menor) {
+            $menor = $array2d[$i][$j];
             $filaMenor = $i;
         }
     }
 }
-
-
-
 ?>
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>238 Tabla Distintos</title>
+    <title>Document</title>
     <style>
-        th,
-        td {
-            border: 1px solid gray;
-            padding: 1em;
-            text-align: center;
+        .mayor {
+            background-color: blue;
         }
-
-        .filaMenor {
-            background-color: greenyellow;
-        }
-
-        .columnaMayor {
-            background-color: aqua;
+        .menor {
+            background-color: green;
         }
     </style>
 </head>
-
 <body>
-    <table>
-        <?php for ($i = 0; $i < 6; $i++) { ?>
-            <tr <?php if ($i == $filaMenor) {
-                    print('class = "filaMenor"');
-                } ?>>
+    <table width="500" border="1">
+    <?php
+//      La columna del máximo debe aparecer en azul.
+//      La fila del mínimo debe aparecer en verde
+        for ($i = 0; $i < FILAS; $i++) {
+            
+            $claseFila = "";
+            if ($i == $filaMenor) {
+                $claseFila = "menor";
+            }
+            echo "<tr class='$claseFila'>";
 
-                <?php for ($j = 0; $j < 9; $j++) { ?>
-
-                    <td <?php if ($j == $columnaMayor) {
-                            print('class="columnaMayor"');
-                        } ?>>
-                        <?= $arrayAleatoria[$i][$j] ?>
-                    </td>
-                <?php    } ?>
-
-            <?php } ?>
-
-
-            </tr>
-
+            for ($j = 0; $j < COLS; $j++) {
+                $claseCol = "";
+                if ($j == $colMayor) {
+                    $claseCol = "mayor";
+                }
+                echo "<td class='$claseCol'>".$array2d[$i][$j]."</td>";
+            }
+            echo "</tr>";
+        }
+    ?>
     </table>
+    
 </body>
-
 </html>
