@@ -21,7 +21,7 @@ function mayor(...$numeros): int
 function concatenar(...$palabras): string {
     $frase = "";
     foreach ($palabras as $palabra) {
-        $frase =$frase."".$palabra." ";
+        $frase .=$palabra." ";
     }
 
     return $frase;
