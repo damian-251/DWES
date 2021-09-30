@@ -59,6 +59,8 @@ foreach ($tiquet as $producto) {
             <th>Total: </th>
             <td><?= $total ?></td>
             <td><?= euros2pesetas($total) ?></td>
+            <!-- También podríamos poner un valor más en el array para que pase a pesetas y 
+                llamar al valor directamente en la tabla en vez de pasar la función por ella. -->
         </tr>
 
     </table>
