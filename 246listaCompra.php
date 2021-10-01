@@ -12,9 +12,7 @@ include "246imprimeTemplate.php";
 <body>
     <?php include "246cabeceraSuper.php" ?>
     <?php include "246lista.php" ?>
-    <footer>
-        <?php include "246pieSuper.php" ?>
-    </footer>
+    <?php include "246pieSuper.php" ?>
 </body>
 
 

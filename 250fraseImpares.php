@@ -6,11 +6,11 @@ function frasesImpares(string $frase ) : string {
     for ($i = 1 ; $i < strlen($frase) ; $i+=2) {
         $fraseImpar .= $frase[$i];
     }
-
     return $fraseImpar;
 }
 
 $frase = "Hola buenos tardes";
+$posImpares = frasesImpares($frase);
 
 ?>
 <!DOCTYPE html>
@@ -22,6 +22,7 @@ $frase = "Hola buenos tardes";
     <title>250 frasesImpares</title>
 </head>
 <body>
-    <p><?=frasesImpares($frase)?></p>
+    <p><?=$frase?></p>
+    <p>Posiciones impares: <?=$posImpares?></p>
 </body>
 </html>
