@@ -29,7 +29,6 @@
             // poner comentarios en una línea 
             
         ?>
-        <br>Docker mola, cuando funciona
         </p>
         <img src="hello.gif" alt="Hola" class="center">
     </body>

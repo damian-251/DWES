@@ -20,6 +20,13 @@ $respuestas[] = "Mis fuentes dicen que no";
 $respuestas[] = "No puedo predecirlo ahora";
 $respuestas[] = "Pregunta en otro momento";
 $respuestas[] = "Debes confiar en ello";
+$respuestas[] = "Es cierto";
+$respuestas[] = "Es decididamente así";
+$respuestas[] = "Probablemente";
+$respuestas[] = "Será mejor que no te lo diga ahora";
+$respuestas[] = "Concéntrate y vuelve a preguntar";
+$respuestas[] = "Buen pronóstico";
+
 
 $size = count($respuestas);
 
@@ -38,6 +45,7 @@ $size = count($respuestas);
 <p>Respuesta: 
     <?=$respuestas[rand(0,$size -1)]?>
 </p>
+<?php include "231bola8form.php"; ?>
     
 </body>
 </html>
