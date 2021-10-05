@@ -8,7 +8,7 @@ function canizador(string $frase)
     $fraseMin = strtolower($fraseCani);
 
     for ($i = 0, $pos = 0; $i < strlen($frase); $i++) {
-        if ($fraseCani[$i] != " ") {
+        if ($fraseCani[$i] != " ") { //Si no es espacio aumentamos la posición
             $pos++;
         }
         if ($pos % 2 == 0) {
@@ -22,3 +22,5 @@ function canizador(string $frase)
 
 $frase = $_GET["frase"];
 echo canizador($frase);
+
+$frase = "Probando frase canizador";

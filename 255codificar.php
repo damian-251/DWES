@@ -16,9 +16,8 @@ $desplazamiento = intval($_GET["desplazamiento"]);
 function codificar(string $frase, int $desplazamiento): string
 {
     $fraseCodificada = "";
-    $arrayCaracteres = [" ", ".", ","];
-    for ($i = 0; $i < strlen($frase); $i++) {
-        if (in_array($frase[$i], $arrayCaracteres)) {
+    for ($i = 0; $i < strlen($frase); $i++) { //Así ignora espacios, núemeros, etc.
+        if (!ctype_alpha($frase[$i])) {
             $fraseCodificada .= $frase[$i];
         } else {
             if (
@@ -33,6 +32,8 @@ function codificar(string $frase, int $desplazamiento): string
     }
     return $fraseCodificada;
 }
+
+//también ctype alfa asi podemos evitar también los espacios y los números
 
 $fraseCodificada = codificar($frase, $desplazamiento);
 
