@@ -21,6 +21,15 @@ function palindromo(string $frase): bool
     }
 }
 
+
+function palindromo2 (string $frase) {
+    $frase = str_replace(" ", "", $frase);
+    $frase = strtoupper($frase);
+    $alReves =  strrev($frase);
+
+    return $frase == $alReves;
+}
+
 function esPalindromo (string $frase) : string {
     if (palindromo($frase)) {
         return "ES palíndromo.";

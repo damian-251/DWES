@@ -10,25 +10,40 @@
 
 */
 
-$cadena = "Hola a todos zZ";
-$desplazamiento = 10;
-$fraseCodificada = "";
+$frase = $_GET["frase"];
+$desplazamiento = intval($_GET["desplazamiento"]);
 
-for ($i = 0; $i < strlen($cadena); $i++) {
+function codificar(string $frase, int $desplazamiento): string
+{
+    $fraseCodificada = "";
     $arrayCaracteres = [" ", ".", ","];
-    $arrayFin = [ord("y") + $desplazamiento, ord("Y") +$desplazamiento]; //aquí esta mal si hay más desplazamiento
-    if (in_array($cadena[$i], $arrayCaracteres)) {
-        $fraseCodificada .= $cadena[$i];
-    } else if (ord(ord($cadena[$i]) + $desplazamiento) > ord("z") && ord($cadena[$i] < ord("a") )) {
-        $fraseCodificada .= chr(ord($cadena[$i]) -26 + $desplazamiento);
-    }else if (ord(ord($cadena[$i]) + $desplazamiento) > ord("Z") && ord($cadena[$i] > ord("A") )) {
-        $fraseCodificada .= chr(ord($cadena[$i]) -26 + $desplazamiento);
+    for ($i = 0; $i < strlen($frase); $i++) {
+        if (in_array($frase[$i], $arrayCaracteres)) {
+            $fraseCodificada .= $frase[$i];
+        } else {
+            //es minúscula
+            if (ord($frase[$i]) >= ord("a") && ord($frase[$i]) <= ord("z")) {
+                if (ord($frase[$i]) + $desplazamiento > ord("z")) {
+                    $fraseCodificada .= chr(ord($frase[$i]) - 26 + $desplazamiento);
+                } else {
+                    $fraseCodificada .= chr(ord($frase[$i]) + $desplazamiento);
+                }
+            } else { //es mayúscula
+                if (ord($frase[$i]) + $desplazamiento > ord("Z")) {
+                    $fraseCodificada .= chr(ord($frase[$i]) - 26 + $desplazamiento);
+                } else {
+                    $fraseCodificada .= chr(ord($frase[$i]) + $desplazamiento);
+                }
+            }
+        }
     }
-    
-    else{
-        $fraseCodificada .= chr(ord($cadena[$i]) + $desplazamiento);
-    }
+    return $fraseCodificada;
 }
+
+$fraseCodificada = codificar($frase, $desplazamiento);
+echo $fraseCodificada;
+echo "<br>";
+echo $frase;
 
 ?>
 <!DOCTYPE html>
@@ -42,8 +57,7 @@ for ($i = 0; $i < strlen($cadena); $i++) {
 </head>
 
 <body>
-    <p>Frase original: <?=$cadena?></p>
-    <p>Frase codificada: <?=$fraseCodificada?></p>
+
 </body>
 
 </html>

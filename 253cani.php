@@ -11,6 +11,9 @@ function cani(string $frase): string
     $palabraMinus = str_replace(" ", "", strtolower($frase));
     $resultado = "";
 
+    //si pasamos las dos minusculas y mayusculas las dos frases luego solo hay que recorrer
+    //un u otra y no ir pasando en el bucle.
+
     for ($i = 0; $i < strlen($frase); $i++) {
         //Guradamos la posición de los espacios
         if ($frase[$i] == " ") {
@@ -34,6 +37,22 @@ function cani(string $frase): string
     }
     return $resultado;
 }
+
+
+/* 
+Si hay espacios
+
+($i = 0, $pos = 0 ; $i < strlen... ;$i++) {
+    if ($fraseCani[$i] != " ") {
+        $pos ++;
+    }
+
+    if ($pos%2..)
+    fldsk fraes[$i]
+}
+
+*/
+
 
 $frase = "Probando a ser un cani reshulon morenikoh";
 $fraseCani = cani($frase);

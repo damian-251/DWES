@@ -9,34 +9,32 @@
 
 declare(strict_types=1);
 
-function analizador(string $frase): array
-{
-    $arrayPalabras = [];
-    $arrayPalabras["nPalabras"] = 0;
-    $numeroLetras = 0;
-    $letrasTotales = 0;
-    $palabra = "";
-    for ($i = 0; $i < strlen($frase); $i++) {
-        $numeroLetras++;
-        $letrasTotales++;
-        $palabra .= $frase[$i];
-        if ($frase[$i] == " " || $i == strlen($frase) - 1) {
-            if ($frase[$i] == " ") {
-                $numeroLetras--;
-                $letrasTotales--;
-            }
-            $arrayPalabras["nPalabras"]++;
-            $arrayPalabras[$palabra] = $numeroLetras;
-            $numeroLetras = 0;
-            $palabra = "";
-        }
-        $arrayPalabras["nLetras"] = $letrasTotales;
-    }
-    return $arrayPalabras;
-}
 $frase = "uno tres lunes martes a";
 
-$arrayPalabras = analizador($frase);
+function analizador (string $frase) : array {
+    $totalLetras = 0;
+    $inicio = 0;
+    $arrayPalabra = [];
+    //Le añadimos un espacio al final para no tener que cambiar el código
+    $frase .= " ";
+    for ($i = 0 ; $i < strlen($frase); $i++) {
+        if ($frase[$i] <strlen($frase)) {
+            //Cortamos la palabra que hay antes de un espacio
+            $palabra = substr($frase, $inicio, $i - $inicio);
+            $totalLetras += strlen($palabra);
+            array_push($arrayPalabra, $palabra);
+            $inicio = $i +1 ;
+        }
+    }
+    
+    $resultado = [];
+    $resultado["totalLetras"] = $totalLetras;
+    $resultado["arrayPalabras"] = $arrayPalabra;
+
+    return $resultado;
+}
+
+//
 
 ?>
 <!DOCTYPE html>
@@ -50,21 +48,15 @@ $arrayPalabras = analizador($frase);
 </head>
 
 <body>
-    <p><?= $frase ?></p>
-    <table>
-        <tr>
-            <th>Palabra</th>
-            <th>Longitud</th>
-        </tr>
-        <?php foreach ($arrayPalabras as $palabra => $valor){ ?>
-            <tr>
-                <td><?=$palabra ?></td>
-                <td>
-                    <?= $valor ?>
-                </td>              
-            </tr>
-        <? } ?>    
-    </table>
+<?=$resultado["totalLetras"] ?>
+<?= count($resultado["arrayPalabras"]) ?>
+
+<?php
+for ($i = 0 ; $i <count($arrayPalabra) ; $i++) {
+    $resultado["arrayPalabras"][$i] . " = ";
+}
+?>
+
 </body>
 
 </html>
