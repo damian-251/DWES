@@ -9,7 +9,7 @@
     Hay que respetar los espacios, puntos y comas.
 
 */
-
+declare(strict_types=1);
 $frase = $_GET["frase"];
 $desplazamiento = intval($_GET["desplazamiento"]);
 
@@ -21,19 +21,13 @@ function codificar(string $frase, int $desplazamiento): string
         if (in_array($frase[$i], $arrayCaracteres)) {
             $fraseCodificada .= $frase[$i];
         } else {
-            //es minúscula
-            if (ord($frase[$i]) >= ord("a") && ord($frase[$i]) <= ord("z")) {
-                if (ord($frase[$i]) + $desplazamiento > ord("z")) {
-                    $fraseCodificada .= chr(ord($frase[$i]) - 26 + $desplazamiento);
-                } else {
-                    $fraseCodificada .= chr(ord($frase[$i]) + $desplazamiento);
-                }
-            } else { //es mayúscula
-                if (ord($frase[$i]) + $desplazamiento > ord("Z")) {
-                    $fraseCodificada .= chr(ord($frase[$i]) - 26 + $desplazamiento);
-                } else {
-                    $fraseCodificada .= chr(ord($frase[$i]) + $desplazamiento);
-                }
+            if (
+                ord($frase[$i]) + $desplazamiento > ord("z") || 
+                ((ord($frase[$i]) + $desplazamiento) > ord("Z") && ord($frase[$i]) <= ord("Z"))
+            ) {
+                $fraseCodificada .= chr(ord($frase[$i]) - (ord("z") - ord("a") + 1) + $desplazamiento);
+            } else {
+                $fraseCodificada .= chr(ord($frase[$i]) + $desplazamiento);
             }
         }
     }
@@ -41,9 +35,6 @@ function codificar(string $frase, int $desplazamiento): string
 }
 
 $fraseCodificada = codificar($frase, $desplazamiento);
-echo $fraseCodificada;
-echo "<br>";
-echo $frase;
 
 ?>
 <!DOCTYPE html>
@@ -57,7 +48,8 @@ echo $frase;
 </head>
 
 <body>
-
+    <p><?=$frase?></p>
+    <p><?=$fraseCodificada?></p>
 </body>
 
 </html>
