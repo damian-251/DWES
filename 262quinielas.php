@@ -16,9 +16,8 @@ function quinigol(): array
     //poner rand (0,3) para que tengan las mismas posibilidades de salir
     for ($i = 0; $i < $longitud; $i++) {
         for ($j = 0; $j < 2; $j++) {
-            $aleatorio = rand(21, ord("z"));
-            //he puesto 21 para que haya un rango parecido en el que no haya letra y por lo tanto sea numero
-            if (ctype_alpha(chr($aleatorio))) {
+            $aleatorio = rand(0,3);
+            if ($aleatorio == 3) {
                 $quiniArray[$i][$j] = "M";
             } else {
                 $quiniArray[$i][$j] = rand(0, 2);
@@ -34,8 +33,8 @@ function quiniela(): array
     $arrayQuiniela = [];
     $combinacion = "";
     for ($i = 0; $i < $longitud; $i++) {
-        $aleatorio = rand(21, ord("z"));
-        if (ctype_alpha(chr($aleatorio))) {
+        $aleatorio = rand(0,2);
+        if ($aleatorio == 2) {
 
             $combinacion .= "X" . " ";
         } else {
