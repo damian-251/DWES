@@ -9,7 +9,14 @@
     puedes probar el ejercicio via URL: 206anyos.php?edad=33.
 
 */
-$edad = $_GET["edad"]?:25;
+//$edad = $_GET["edad"]?:25;
+
+if (isset($_GET["edad"])) {
+    $edad = $_GET["edad"];
+}else {
+    $edad = 25;
+}
+
 $anyoActual = date("Y");
 const EDAD_JUBILACION = 65; //Mejor poner la constante que poner el 65 directamente.
 //poner el isset para que no de error si no introducimos ningún dato.

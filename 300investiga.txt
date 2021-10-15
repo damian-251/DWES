@@ -1,0 +1,13 @@
+    Investiga la diferencia entre un paradigma orientado a objetos basado en clases (PHP)
+respecto a uno basado en prototipos (JavaScript).
+
+Paradigma orientado a objetos basado en claes:
+    Se crea una clase con atributos y métodos que manejan esos atributos. Los objetos se crean usando
+    la clase como plantilla.
+
+Paradigma orientado a objetos basados en prototipos:
+    En este caso no existen las clases. Los nuevos objetos se copian de otros ya existentes.
+    El objeto protoptio sería como el objeto plantilla del cual se crean los otros objetos que 
+    heredan métodos y propiedades.
+
+

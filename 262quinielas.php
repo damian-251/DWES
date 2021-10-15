@@ -13,7 +13,6 @@ function quinigol(): array
 {
     $longitud = 6;
     $quiniArray = [[]];
-    //poner rand (0,3) para que tengan las mismas posibilidades de salir
     for ($i = 0; $i < $longitud; $i++) {
         for ($j = 0; $j < 2; $j++) {
             $aleatorio = rand(0,3);
@@ -27,6 +26,8 @@ function quinigol(): array
     return $quiniArray;
 }
 
+print_r(quinigol());
+
 function quiniela(): array
 {
     $longitud = 14;
@@ -35,12 +36,11 @@ function quiniela(): array
     for ($i = 0; $i < $longitud; $i++) {
         $aleatorio = rand(0,2);
         if ($aleatorio == 2) {
-
             $combinacion .= "X" . " ";
         } else {
             $combinacion .= rand(1, 2) . " ";
         }
-    }
+    } 
     $combinacion = rtrim($combinacion);
     $arrayQuiniela["combinaciones"] = $combinacion;
     $arrayQuiniela["plenoQuince"] = quinigol()[rand(0, 5)];

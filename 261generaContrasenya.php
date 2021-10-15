@@ -6,7 +6,9 @@ partir de un tamaño, genere una contraseña aleatoria compuesta de letras y dí
 
 declare(strict_types=1);
 include "260generador.php";
-$longitud = intval($_GET["longitud"]);
+//$longitud = intval($_GET["longitud"]);
+
+$longitud = intval($_GET["longitud"]) ? : 15;
 
 
 function randomPassword(int $longitud): string

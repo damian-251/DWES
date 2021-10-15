@@ -16,7 +16,7 @@ $fin = $_GET["fin"];
 
 <body>
     <ul><?php
-    if($iniico %2 == 1) {
+    if($inico %2 == 1) {
         $inicio++;
     } 
         for ($i = $inicio; $i <= $fin; $i+=2) {
