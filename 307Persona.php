@@ -12,7 +12,7 @@ class Persona
     public function __construct(
         protected string $nombre,
         protected string $apellidos,
-    ) {
+    ) { 
     }
 
     public function getNombre(): string

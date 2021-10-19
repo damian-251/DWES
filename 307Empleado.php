@@ -18,7 +18,7 @@ class Empleado307 extends Persona
     {
         parent::__construct($nombre, $apellidos);
         $this->sueldo = $sueldo;
-        $this->telefonos = [];
+        $this->numeros = []; //para poner como php8 los que sean de persona sin el private y los que sean de empleado con private
     }
 
     public function setSueldo(float $sueldo)
@@ -83,19 +83,12 @@ class Empleado307 extends Persona
 $emp = new Empleado307("Susana", "Torio", 1500);
 $emp->anyadirTelefono(4568879);
 $emp->anyadirTelefono(7954687);
-echo $emp->getNombreCompleto();
-echo "<br>";
-echo $emp->listarTelefonos();
-echo "<br>";
 Empleado307::setSueldoTope(3500);
-echo $emp->getSueldo();
-echo "<br>";
-echo Empleado307::getSueldoTope();
 
-echo "Empleado <br>";
+//Función toHtml
 echo $emp->toHtml();
 
-echo "<br> Persona";
+echo "<br>";
 
 $per = new Persona("Helen", "Chufe");
 echo $per->toHtml();

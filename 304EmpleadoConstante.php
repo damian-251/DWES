@@ -7,7 +7,7 @@ con el valor del sueldo que debe pagar impuestos, y modifica el código para uti
 
 declare(strict_types=1);
 
-class Empleado
+class Empleado304
 {
     private const SUELDO_TOPE = 3333;
     private array $numeros;
@@ -49,7 +49,7 @@ class Empleado
     //Se pagan cuando el sueldo es superior a 3333€
     public function debePagarImpuestos(): bool
     {
-        return $this->sueldo > self::SUELDO_TOPE ? true : false;
+        return $this->sueldo > $this->SUELDO_TOPE ? true : false; //this porque no es estático
     }
 
     public function anyadirTelefono(int $telefono): void
@@ -70,36 +70,36 @@ class Empleado
     }
 }
 
-$empleado = new Empleado("Lola", "Mento");
+$Empleado304 = new Empleado304("Lola", "Mento");
 
-echo $empleado->getNombreCompleto();
+echo $Empleado304->getNombreCompleto();
 echo "<br>";
-$empleado->anyadirTelefono(12345788);
-$empleado->anyadirTelefono(789545654);
-$cadenaTelefonos = $empleado->listarTelefonos();
+$Empleado304->anyadirTelefono(12345788);
+$Empleado304->anyadirTelefono(789545654);
+$cadenaTelefonos = $Empleado304->listarTelefonos();
 echo "Cadena teléfonos: ";
 echo $cadenaTelefonos;
 echo "<br>";
-echo $empleado->getSueldo();
+echo $Empleado304->getSueldo();
 echo "<br>";
 echo "Debe pagar impuestos: (1 sí): ";
-echo $empleado-> debePagarImpuestos();
-echo $empleado-> setSueldo(8000);
+echo $Empleado304-> debePagarImpuestos();
+echo $Empleado304-> setSueldo(8000);
 echo "<br>";
-echo $empleado-> getSueldo();
+echo $Empleado304-> getSueldo();
 echo "<br>";
 echo "Debe pagar impuestos (1 sí): ";
-echo $empleado-> debePagarImpuestos();
+echo $Empleado304-> debePagarImpuestos();
 echo "<br>";
-$empleado->vaciarTelefonos();
-$cadenaTelefonos = $empleado->listarTelefonos();
+$Empleado304->vaciarTelefonos();
+$cadenaTelefonos = $Empleado304->listarTelefonos();
 echo "Vaciamos los teléfonos";
 echo "<br>";
 echo "Listado teléfonos: ";
-echo $empleado->listarTelefonos();
+echo $Empleado304->listarTelefonos();
 echo "<br>" . "Se añaden nuevos teléfonos: ";
-$empleado->anyadirTelefono(46456465);
-$empleado->anyadirTelefono(756998989);
-$empleado->anyadirTelefono(76876976);
-echo $empleado->listarTelefonos();
+$Empleado304->anyadirTelefono(46456465);
+$Empleado304->anyadirTelefono(756998989);
+$Empleado304->anyadirTelefono(76876976);
+echo $Empleado304->listarTelefonos();
 
