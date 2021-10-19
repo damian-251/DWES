@@ -171,7 +171,10 @@ class Empleado314 extends Trabajador314 implements JSerializable
 
     public function toJSON(): string
     {
-        return json_encode($this);
+        foreach ($this as $key => $value) {
+            $json[$key] = $value;
+        }
+        return json_encode($json);
     }
 
     public function toSerialize(): string
@@ -219,9 +222,12 @@ class Gerente314 extends Trabajador314 implements JSerializable
 
     public function toJSON(): string
     {
-        return json_encode($this);
+        foreach ($this as $key => $value) {
+            $json[$key] = $value;
+        }
+        return json_encode($json);
     }
-    
+
     public function toSerialize(): string
     {
         return serialize($this);
@@ -317,4 +323,6 @@ echo "Coste de las nóminas: ";
 echo $empresa->getCosteNominas();
 echo "<br>";
 
+echo $emp->toJSON();
 echo $ger->toJSON();
+
