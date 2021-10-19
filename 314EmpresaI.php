@@ -1,17 +1,18 @@
 <?php
 
-/* 
-312Trabajador.php: Copia las clases del ejercicio anterior y modifícalas.
+/*
+14EmpresaI.php: Copia las clases del ejercicio anterior y modifícalas.
 
-    Cambia la estructura de clases conforme al gráfico respetando todos los métodos que ya están hechos.
-    Trabajador es una clase abstracta que ahora almacena los telefonos y donde calcularSueldo es un método abstracto.
-    El sueldo de un Empleado se calcula a partir de las horas trabajadas y lo que cobra por hora.
-    Para los Gerentes, su sueldo se incrementa porcentualmente en base a su edad: salario + salario*edad/100
+    Crea un interfaz JSerializable, de manera que ofrezca los métodos:
+        toJSON(): string → utiliza la función json_encode(mixed)
+        toSerialize(): string → utiliza la función serialize(mixed)
+    Modifica todas las clases que no son abstractas para que implementen el interfaz creado.
+
 */
 
 declare(strict_types=1);
 
-abstract class Persona312
+abstract class Persona314
 {
     public function __construct(
         protected string $nombre,
@@ -40,7 +41,7 @@ abstract class Persona312
         return $this->nombre . " " . $this->apellidos;
     }
 
-    public static abstract function toHtml(Persona312 $p): string;
+    public static abstract function toHtml(Persona314 $p): string;
 
     public function __toString(): string
     {
@@ -49,7 +50,7 @@ abstract class Persona312
     }
 }
 
-abstract class Trabajador312 extends Persona312
+abstract class Trabajador314 extends Persona314
 {
     private static $sueldoTope;
     private array $numeros;
@@ -96,7 +97,7 @@ abstract class Trabajador312 extends Persona312
         $this->numeros = [];
     }
 
-    public static function toHtml(Persona312 $p): string
+    public static function toHtml(Persona314 $p): string
     {
         $cadenaHtml = "<p><b>Datos:</b></p><p>";
         $cadenaHtml .= "Nombre: " . $p->getNombre() . "</p>" .
@@ -104,7 +105,7 @@ abstract class Trabajador312 extends Persona312
             "Listado de teléfonos: " .
             "<ol>";
 
-        if ($p instanceof Trabajador312) {
+        if ($p instanceof Trabajador314) {
             foreach (explode(", ", $p->listarTelefonos()) as $telefono) {
                 $cadenaHtml .= "<li>" . $telefono . "</li>";
             }
@@ -123,7 +124,7 @@ abstract class Trabajador312 extends Persona312
 }
 
 
-class Empleado312 extends Trabajador312
+class Empleado314 extends Trabajador314 implements JSerializable
 {
     public function __construct(
         string $nombre,
@@ -150,11 +151,11 @@ class Empleado312 extends Trabajador312
         return $this->horasTrabajadas * $this->precioPorHora;
     }
 
-    public static function toHtml(Persona312 $p): string
+    public static function toHtml(Persona314 $p): string
     {
         $cadenaHtml = "";
         $cadenaHtml .= parent::toHtml($p);
-        if ($p instanceof Empleado312) {
+        if ($p instanceof Empleado314) {
             $cadenaHtml .= "Horas Trabajadas: " . $p->getHorasTrabajadas() . "<br>" .
                 "Precio por hora: " . $p->getPrecioPorHora() . "<br>";
         }
@@ -167,9 +168,19 @@ class Empleado312 extends Trabajador312
             "Horas trabajadas: " . $this->horasTrabajadas . "\n" .
             "Precio por hora: " . $this->precioPorHora . "\n";
     }
+
+    public function toJSON(): string
+    {
+        return json_encode($this);
+    }
+
+    public function toSerialize(): string
+    {
+        return serialize($this);
+    }
 }
 
-class Gerente312 extends Trabajador312
+class Gerente314 extends Trabajador314 implements JSerializable
 {
     public function __construct(
         string $nombre,
@@ -190,11 +201,11 @@ class Gerente312 extends Trabajador312
         return $this->salarioBase + $this->salarioBase * $this->getEdad() / 100;
     }
 
-    public static function toHtml(Persona312 $p): string
+    public static function toHtml(Persona314 $p): string
     {
         $cadenaHtml = "";
         $cadenaHtml .= parent::toHtml($p);
-        if ($p instanceof Gerente312) {
+        if ($p instanceof Gerente314) {
             $cadenaHtml .= "Salario base: " . $p->getSalarioBase() . "<br>";
         }
         return $cadenaHtml;
@@ -205,4 +216,105 @@ class Gerente312 extends Trabajador312
         return parent::__toString() . "\n" .
             "Salario base: " . $this->salarioBase . "\n";
     }
+
+    public function toJSON(): string
+    {
+        return json_encode($this);
+    }
+    
+    public function toSerialize(): string
+    {
+        return serialize($this);
+    }
 }
+
+
+class Empresa314
+{
+    private string $nombreEmpresa;
+    private string $direccion;
+    private array $trabajadores;
+
+    public function __construct()
+    {
+        $this->trabajadores = [];
+    }
+
+    public function setNombreEmpresa($nombreEmpresa)
+    {
+        $this->nombreEmpresa = $nombreEmpresa;
+    }
+
+    public function setDireccion($direccion)
+    {
+        $this->direccion = $direccion;
+    }
+
+    public function getNombreEmpresa(): string
+    {
+        return $this->nombreEmpresa;
+    }
+
+    public function getDireccion(): string
+    {
+        return $this->direccion;
+    }
+
+    public function anyadirTrabajador(Trabajador314 $t)
+    {
+        $this->trabajadores[] = $t;
+    }
+
+    public function listarTrabajadoresHtml()
+    {
+        $cadenaHtml = "";
+        foreach ($this->trabajadores as $tr) {
+            if ($tr instanceof Empleado314) {
+                $cadenaHtml .= "<b>Empleado</b> <br>" .
+                    Empleado314::toHtml($tr);
+            } else if ($tr instanceof Gerente314) {
+                $cadenaHtml .= "<b>Gerente</b> <br>" .
+                    Gerente314::toHtml($tr);
+            }
+            $cadenaHtml .= "Sueldo: " . $tr->calcularSueldo() . "<br><hr>";
+        }
+        return $cadenaHtml;
+    }
+
+    public function getCosteNominas(): float
+    {
+        $coste = 0;
+        foreach ($this->trabajadores as $tr) {
+            $coste += $tr->calcularSueldo();
+        }
+        return $coste;
+    }
+}
+
+interface JSerializable
+{
+    public function toJSON(): string;
+    public function toSerialize(): string;
+}
+
+
+
+//Pruebas
+
+$ger = new Gerente314("Gerente", "uno", 28, 2000);
+$ger->anyadirTelefono(545645646);
+$ger->anyadirTelefono(8456564);
+$emp = new Empleado314("Empleado", "Uno", 45, 40, 15);
+$emp->anyadirTelefono(1316498456);
+$emp->anyadirTelefono(887878787);
+
+$empresa = new Empresa314();
+$empresa->anyadirTrabajador($ger);
+$empresa->anyadirTrabajador($emp);
+echo $empresa->listarTrabajadoresHtml();
+echo "<br>";
+echo "Coste de las nóminas: ";
+echo $empresa->getCosteNominas();
+echo "<br>";
+
+echo $ger->toJSON();

@@ -45,22 +45,11 @@ class Empresa313
         $cadenaHtml = "";
         foreach ($this->trabajadores as $tr) {
             if ($tr instanceof Empleado312) {
-                $cadenaHtml .= "<b>Empleado</b> <br>";
+                $cadenaHtml .= "<b>Empleado</b> <br>" .
+                    Empleado312::toHtml($tr);
             } else if ($tr instanceof Gerente312) {
-                $cadenaHtml .= "<b>Gerente</b> <br>";
-            }
-            $cadenaHtml .= "Nombre: " . $tr->getNombre() . "<br>" .
-                "Apellidos: " . $tr->getApellidos() . "<br>" .
-                "Edad: " . $tr->getEdad() . "<br>" .
-                "Teléfonos: <br>";
-            foreach (explode(", ", $tr->listarTelefonos()) as $telefono) {
-                $cadenaHtml .= "<li>" . $telefono . "</li>";
-            }
-            if ($tr instanceof Empleado312) {
-                $cadenaHtml .= "Horas Trabajadas: " . $tr->getHorasTrabajadas() . "<br>" .
-                    "Precio por Hora: " . $tr->getPrecioPorHora() . "<br>";
-            } else if ($tr instanceof Gerente312) {
-                $cadenaHtml .= "Salario Base: " . $tr->getSalarioBase() . "<br>";
+                $cadenaHtml .= "<b>Gerente</b> <br>" .
+                    Gerente312::toHtml($tr);
             }
             $cadenaHtml .= "Sueldo: " . $tr->calcularSueldo() . "<br><hr>";
         }
@@ -92,8 +81,3 @@ echo "<br>";
 echo "Coste de las nóminas: ";
 echo $empresa->getCosteNominas();
 echo "<br>";
-
-echo Trabajador312::toHtml($ger);
-echo Trabajador312::toHtml($emp);
-
-
