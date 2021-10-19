@@ -53,8 +53,8 @@ class Persona310
 
     public function __toString(): string
     {
-        return  "Nombre: " . $this->nombre . "<br> " . "Apellidos: " . $this->apellidos
-            . "<br>" . "Edad: " . $this->edad;
+        return  "Nombre: " . $this->nombre . "\n" . "Apellidos: " . $this->apellidos
+            . "\n" . "Edad: " . $this->edad;
     }
 }
 
