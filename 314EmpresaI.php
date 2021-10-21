@@ -321,8 +321,18 @@ echo $empresa->listarTrabajadoresHtml();
 echo "<br>";
 echo "Coste de las nóminas: ";
 echo $empresa->getCosteNominas();
+echo "<br><hr>";
+
+echo "<b>Función to Json</b><br>";
+echo $emp->toJSON();
+echo "<br>";
+echo $ger->toJSON();
+echo "<br>";
+echo "<b>Función to Serialize</b><br>";
+echo $emp->toSerialize();
+echo "<br>";
+echo $ger->toSerialize();
 echo "<br>";
 
-echo $emp->toJSON();
-echo $ger->toJSON();
+
 

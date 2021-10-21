@@ -34,7 +34,7 @@ abstract class Persona311
         return $this->nombre . " " . $this->apellidos;
     }
 
-    public abstract function toHtml(): string;
+    public static abstract function toHtml(Persona311 $p): string;
 
     public function __toString(): string
     {
@@ -99,19 +99,22 @@ class Empleado311 extends Persona311
         $this->numeros = [];
     }
 
-    public function toHtml(): string
+    public static function toHtml(Persona311 $p): string
     {
         $cadenaHtml = "<p><b>Datos del empleado</b></p><p>";
-        $cadenaHtml .= "Nombre: " . $this->getNombre() . "</p>" .
-            "<p>Apellidos: " . $this->getApellidos() . "</p>" .
-            "<p>Sueldo: " . $this->getSueldo() . "€ </p>" .
-            "Listado de teléfonos: " .
-            "<ol>";
+        $cadenaHtml .= "Nombre: " . $p->getNombre() . "</p>" .
+            "<p>Apellidos: " . $p->getApellidos() . "</p>";
 
-        foreach (explode(",", $this->listarTelefonos()) as $telefono) {
-            $cadenaHtml .= "<li>" . $telefono . "</li>";
-        }
-        $cadenaHtml .= "</ol>";
+            if ($p instanceof Empleado311) {
+                $cadenaHtml .=  "<p>Sueldo: " . $p->getSueldo() . "€ </p>" .
+                "Listado de teléfonos: " .
+                "<ol>";
+    
+            foreach (explode(",", $p->listarTelefonos()) as $telefono) {
+                $cadenaHtml .= "<li>" . $telefono . "</li>";
+            }
+            $cadenaHtml .= "</ol>"; 
+            }
 
         return $cadenaHtml;
     }
@@ -127,6 +130,6 @@ $emp = new Empleado311("Andrés", "Trozado", 25);
 $emp->anyadirTelefono(54654654);
 $emp->anyadirTelefono(44454545);
 
-echo $emp->toHtml();
+echo Empleado311::toHtml($emp);
 
 echo $emp->__toString();
