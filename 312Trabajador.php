@@ -101,10 +101,11 @@ abstract class Trabajador312 extends Persona312
         $cadenaHtml = "<p><b>Datos:</b></p><p>";
         $cadenaHtml .= "Nombre: " . $p->getNombre() . "</p>" .
             "<p>Apellidos: " . $p->getApellidos() . "</p>" .
+            "<p>Edad: " . $p->getEdad() . "</p>" .
             "Listado de teléfonos: " .
             "<ol>";
 
-        if ($p instanceof Trabajador312) {
+        if ($p instanceof Trabajador314) {
             foreach (explode(", ", $p->listarTelefonos()) as $telefono) {
                 $cadenaHtml .= "<li>" . $telefono . "</li>";
             }

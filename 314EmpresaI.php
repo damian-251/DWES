@@ -102,6 +102,7 @@ abstract class Trabajador314 extends Persona314
         $cadenaHtml = "<p><b>Datos:</b></p><p>";
         $cadenaHtml .= "Nombre: " . $p->getNombre() . "</p>" .
             "<p>Apellidos: " . $p->getApellidos() . "</p>" .
+            "<p>Edad: " . $p->getEdad() . "</p>" .
             "Listado de teléfonos: " .
             "<ol>";
 
