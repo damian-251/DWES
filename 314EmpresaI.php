@@ -282,6 +282,8 @@ class Empresa314
             } else if ($tr instanceof Gerente314) {
                 $cadenaHtml .= "<b>Gerente</b> <br>" .
                     Gerente314::toHtml($tr);
+                    //Podríamos haber puesto instaneof en Trabajador para tener los datos de los dos y poner
+                    //trabjador en vez de separar por gerente y empleado.
             }
             $cadenaHtml .= "Sueldo: " . $tr->calcularSueldo() . "<br><hr>";
         }
