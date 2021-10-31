@@ -19,3 +19,8 @@ echo 'AUTH_TYPE: ' . $_SERVER['AUTH_TYPE']."<br>";
 echo 'REMOTE_USER: ' . $_SERVER['REMOTE_USER']."<br>";
 echo 'HTTP_USER_AGENT: ' . $_SERVER['HTTP_USER_AGENT']."<br>";
 echo 'HTTP_REFERER: ' . $_SERVER['HTTP_REFERER']."<br>";
+
+/*
+
+
+*/

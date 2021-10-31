@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!-- 
+402formulario.html y 402formulario.php: Crea un formulario que solicite:
+
+    Nombre y apellidos.
+    Email.
+    URL página personal.
+    Sexo (radio).
+    Número de convivientes en el domicilio.
+    Aficiones (checkboxes) – poner mínimo 4 valores.
+    Menú favorito (lista selección múltiple) – poner mínimo 4 valores.
+
+Muestra los valores cargados en una tabla-resumen.
+-->
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>402 Formulario</title>
+    <style>
+        * {
+            margin: .5em 0 0 .5em;
+        }
+
+        label,
+        input {
+            display: block;
+        }
+
+        label {
+            margin-top: 1em;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            display: inline;
+            margin-right: .5em;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="403validacion.php" method="get">
+        <label for="nombre">Nombre: </label>
+        <input type="text" name="nombre" id="nombre" required>
+        <label for="apellidos">Apellidos: </label>
+        <input type="text" name="apellidos" id="apellidos" required>
+        <label for="email">Correo electrónico: </label>
+        <input type="email" name="email" id="email" required>
+        <label for="pagina">Página personal: </label>
+        <input type="url" name="pagina" id="pagina" required>
+            <label for="sexo">Sexo: </label>
+            <input type="radio" name="sexo" value="masculino" required>Masculino
+            <input type="radio" name="sexo" value="femenino">Femenino
+            <input type="radio" name="sexo" value="otro">Otro
+        <label for="convivientes">Número de convivientes: </label>
+        <input type="number" name="convivientes" id="test" required>
+        <label for="aficiones[]">Aficiones: </label>
+            <input type="checkbox" name="aficiones[]" value="videojuegos">Videojuegos
+            <input type="checkbox" name="aficiones[]" value="deporte">Deporte
+            <input type="checkbox" name="aficiones[]" value="dormir">Dormir
+            <input type="checkbox" name="aficiones[]" value="viajar">Viajar
+        <label for="menu">Menú favorito: </label>
+        <select name="menu[]" multiple="true" required>
+            <option name="pizza4q">Pizza 4 Quesos</option>
+            <option name="pizzaPine">Pizza con Piña</option>
+            <option name="macarronesBolo">Macarrones Boloñesa</option>
+            <option name="verduraSalteado">Salteado de Verduras</option>
+        </select>
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+
+</html>
