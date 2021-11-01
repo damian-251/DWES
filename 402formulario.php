@@ -6,14 +6,14 @@
 ]; */
 /* $arrayAficiones = ["dormir" => "Dormir", "viajar" => "Viajar", "deporte" => "Deporte", "videojuegos" => "Videojuegos"];
  */
-$menus = $_POST["menu"];
-$aficiones = $_POST["aficiones"];
-$nombre = $_POST["nombre"];
-$apellidos = $_POST["apellidos"];
-$sexo = $_POST["sexo"];
-$email = $_POST["email"];
-$pagina = $_POST["pagina"];
-$convivientes = $_POST["convivientes"];
+$menus = $_GET["menu"];
+$aficiones = $_GET["aficiones"];
+$nombre = $_GET["nombre"];
+$apellidos = $_GET["apellidos"];
+$sexo = $_GET["sexo"];
+$email = $_GET["email"];
+$pagina = $_GET["pagina"];
+$convivientes = $_GET["convivientes"];
 
 $menuFavorito = implode("<br>",$menus);
 $aficionesFav = implode("<br>", $aficiones);
