@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!-- 
+    404subida.html y 404subida.php: Crea un formulario que permita subir un archivo al 
+    servidor. Además del fichero, debe pedir en el mismo formulario dos campos numéricos
+     que soliciten la anchura y la altura. Comprueba que tanto el fichero como los datos 
+     llegan correctamente.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Subida </title>
+</head>
+<body>
+    <form enctype="multipart/form-data" action="405subidaImagen.php" method="post">
+        <label for="altura">Altura (px): </label>
+        <input type="number" name="altura">
+        <label for="anchura">Anchura (px): </label>
+        <input type="number" name="anchura">
+        <label for="imagen">Imagen: </label>
+        <input name="archivoEnviado" type="file" />
+        <input type="submit" name="btnSubir" value="Subir" />
+    </form>
+</body>
+</html>

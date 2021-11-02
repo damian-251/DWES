@@ -39,6 +39,7 @@ if (isset($_GET["pagina"])) {
     $errores[] = "Página personal no encontrada";
 }
 
+$menuTemp=[];
 if (isset($_GET["menu"])) {
     $menus = [];
     foreach ($_GET["menu"] as $menu) {
