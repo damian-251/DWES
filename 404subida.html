@@ -11,15 +11,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 Subida </title>
+    <style>
+        label, input[type="submit"] {
+            display: block;
+            margin: .5em;
+        }
+    </style>
 </head>
 <body>
     <form enctype="multipart/form-data" action="405subidaImagen.php" method="post">
         <label for="altura">Altura (px): </label>
-        <input type="number" name="altura">
+        <input type="number" name="altura" required>
         <label for="anchura">Anchura (px): </label>
-        <input type="number" name="anchura">
+        <input type="number" name="anchura" required>
         <label for="imagen">Imagen: </label>
-        <input name="archivoEnviado" type="file" />
+        <input name="archivoEnviado" type="file" required />
         <input type="submit" name="btnSubir" value="Subir" />
     </form>
 </body>
