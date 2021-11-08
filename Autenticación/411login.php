@@ -11,7 +11,7 @@ if (isset($_POST['enviar'])) {
     // validamos que recibimos ambos parámetros
     if (empty($usuario) || empty($password)) {
         $error = "Debes introducir un usuario y contraseña";
-        include "index.php";
+        include "410index.html";
     } else {
         if ($usuario == "usuario" && $password == "usuario") {
             // almacenamos el usuario en la sesión
