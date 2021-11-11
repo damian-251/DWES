@@ -24,13 +24,6 @@ if (!isset($_SESSION['usuario'])) {
     die("Error - debe <a href='410index.html'>identificarse</a>.<br />");
 }
 
-if (!isset($_SESSION["series"])) {
-    $_SESSION["series"][] = "Black Mirror";
-    $_SESSION["series"][] = "House of Cards";
-    $_SESSION["series"][] = "Orange is the New Black";
-}
-
-
 $series = $_SESSION["series"];
 
 /* echo var_dump($series);

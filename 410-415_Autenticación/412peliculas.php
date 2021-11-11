@@ -10,12 +10,6 @@ if (!isset($_SESSION['usuario'])) {
     die("Error - debe <a href='index.php'>identificarse</a>.<br />");
 }
 
-if (!isset($_SESSION["peliculas"])) {
-    $_SESSION["peliculas"][] = "Eternals";
-    $_SESSION["peliculas"][] = "Venom: Let There Be Carnage";
-    $_SESSION["peliculas"][] = "The Last Duel";
-}
-
 $peliculas = $_SESSION["peliculas"];
 
 ?>

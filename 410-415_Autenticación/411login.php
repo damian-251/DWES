@@ -17,6 +17,18 @@ if (isset($_POST['enviar'])) {
             // almacenamos el usuario en la sesión
             session_start();
             $_SESSION['usuario'] = $usuario;
+            //Cargamos las series y las películas de dicho usuario en el controlador
+            if (!isset($_SESSION["peliculas"])) {
+                $_SESSION["peliculas"][] = "Eternals";
+                $_SESSION["peliculas"][] = "Venom: Let There Be Carnage";
+                $_SESSION["peliculas"][] = "The Last Duel";
+            }
+
+            if (!isset($_SESSION["series"])) {
+                $_SESSION["series"][] = "Black Mirror";
+                $_SESSION["series"][] = "House of Cards";
+                $_SESSION["series"][] = "Orange is the New Black";
+            }
             // cargamos la página principal
             include "412peliculas.php";
         } else {
